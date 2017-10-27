@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pricing-model>
+    <qualifier>
+        <next number="3" sort-by="priceInfo.listPrice" sort-order="descending">
+            <collection-name>items</collection-name>
+            <element-name>item</element-name>
+            <element-quantity-property>quantity</element-quantity-property>
+            <includes>
+                <value>item.auxiliaryData.catalogRef.offerGroup2</value>
+                <constant>
+                    <data-type>java.lang.String</data-type>
+                    <string-value>ls66612</string-value>
+                </constant>
+            </includes>
+        </next>
+    </qualifier>
+    <target>
+        <up-to-and-including number="3" sort-by="priceInfo.listPrice" sort-order="descending">
+            <collection-name>items</collection-name>
+            <element-name>item</element-name>
+            <element-quantity-property>quantity</element-quantity-property>
+            <includes>
+                <value>item.auxiliaryData.catalogRef.targetedByOffers</value>
+                <constant>
+                    <data-type>java.lang.String</data-type>
+                    <string-value>ls66612</string-value>
+                </constant>
+            </includes>
+        </up-to-and-including>
+    </target>
+</pricing-model>

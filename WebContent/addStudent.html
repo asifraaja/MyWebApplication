@@ -1,0 +1,42 @@
+<html>
+	<body>
+		<h3>Student Page</h3>
+		Add a new Student
+		<ul>
+			<li><a href="home.html">Home</a></li>
+			<li><a href="#">Add Student</a></li>
+			<li><a href="removeStudent.html">Remove Student</a></li>
+			<li><a href="contactUs.html">Contact Us</a></li>
+		</ul>
+		<hr>
+		<form action="StudentControllerServlet" method="get">
+			<fieldset>
+				<input type="hidden" name="action" value="add">
+				First Name<input type="text" name="fname"><br>
+				Last Name<input type="text" name="lname"><br>
+				Gender
+				<input type="radio" name="gender" value="Male"> Male
+				<input type="radio" name="gender" value="Female"> Female <br>
+				Department
+				<input type="radio" name="dept" value="CSE"> CSE
+				<input type="radio" name="dept" value="EEE"> EEE 
+				<input type="radio" name="dept" value="MECH"> MECH
+				<input type="radio" name="dept" value="CIVIL"> CIVIL <br>
+				Address:-<br>
+				Address Type 
+				<select name="type">
+					<option>HOME</option>
+					<option>OFFICE</option>
+				</select><br>
+				Door No<input type="text" name="doorno"><br>
+				Street<input type="text" name="street"><br>
+				Area<input type="text" name="area"><br>
+				City<input type="text" name="city"><br>
+				PinCode<input type="text" name="pincode"><br>
+				Mobile Number:-
+				<input type="text" name="mobile"><br>
+				<input type="submit" value="submit">
+			</fieldset>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title> Student website </title>
+	</head>
+	
+	<body>
+		<h3> Welcome to student website...</h3>
+		<ul>
+			<li><a href="home.html">Home</a></li>
+			<li><a href="addStudent.html">Add Student</a></li>
+			<li><a href="#">Search Student</a></li>
+			<li><a href="removeStudent.html">Remove Student</a></li>
+			<li><a href="contactUs.html">Contact Us</a></li>
+		</ul>
+		<hr>
+		<form action="StudentControllerServlet" method="get">
+		<input type="hidden" name="action" value="search">
+		Search Student <input type="text" name="search"> &nbsp; <input type="submit" value="search">
+		</form>
+		<div id="search_results"></div>
+	</body>
+</html>
