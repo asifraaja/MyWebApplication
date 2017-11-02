@@ -45,6 +45,8 @@ public class Student {
 		addrType type = addrType.valueOf(addressType);
 		Address address = new Address();
 		address = addresses.get(type);
+		if(address == null)
+			return null;
 		return address;
 	}
 	public String getFname() {

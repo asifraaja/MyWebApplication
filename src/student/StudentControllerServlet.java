@@ -42,20 +42,26 @@ public class StudentControllerServlet extends HttpServlet {
 		System.out.println("Get started");
 		String action = req.getParameter("action");
 		String success = null;
+		HttpSession session = req.getSession();
+		RequestDispatcher RequetsDispatcherObj = null;
 		switch(action) {
 			case "add":
 				Student student = null;
 				success = addStudent(req,resp,student);
 				System.out.println("Success:"+success);
-				HttpSession session = req.getSession();
 				session.setAttribute("success", success);
 				session.setAttribute("student", student);
+				RequetsDispatcherObj = req.getRequestDispatcher("/addStudent.jsp");
 				break;
 			case "search":
-				searchStudent(req,resp);
+				List<Student> students = searchStudent(req,resp);
+				for(Student st : students) {
+					System.out.println(st.getDept() + st.getFname() + st.getGender() + st.getLname());
+				}
+				session.setAttribute("students", students);
+				RequetsDispatcherObj = req.getRequestDispatcher("/search.jsp");
 				break;
 		}
-		RequestDispatcher RequetsDispatcherObj =req.getRequestDispatcher("/addStudent.jsp");
 		RequetsDispatcherObj.forward(req, resp);
 	}
 
@@ -90,7 +96,7 @@ public class StudentControllerServlet extends HttpServlet {
 		student.setGender(gender); student.setDept(dept);
 		student.setAddress(type, address); student.setMobileNum(mobileNum);
 		
-		return studentDbUtil.addStudent(student);
+		return studentDbUtil.addStudent(student, type);
 	}
 	
 	private List<Student> searchStudent(HttpServletRequest req, HttpServletResponse resp) {

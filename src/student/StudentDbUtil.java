@@ -33,16 +33,18 @@ public class StudentDbUtil {
 			if(keyword.equalsIgnoreCase("all"))
 				sql = "select * from student order by firstName";
 			else
-				sql = "select * from student where firstName like '"+keyword+"%'";
+				sql = "select * from student where firstName like '"+keyword+"%' order by firstName";
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				sql = "select * from student where rollnum="+rs.getInt(0);
-				Statement stmt2 = con.createStatement();
-				ResultSet rs2 = stmt.executeQuery(sql);
 				Student student = new Student();
-				student.setRollnum(rs.getInt(0)); 
-				
+				student.setRollnum(rs.getInt("rollnum"));
+				student.setFname(rs.getString("firstname"));
+				student.setLname(rs.getString("lastname"));
+				student.setGender(rs.getString("gender"));
+				student.setDept(rs.getString("department"));
+				student.setMobileNum(rs.getString("mobilenumber"));
+				students.add(student);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -50,7 +52,7 @@ public class StudentDbUtil {
 		return students;
 	}
 	
-	public  String addStudent(Student student) {
+	public String addStudent(Student student, String type) {
 		String sql;
 		try {
 			int rollnum = student.getRollnum();
@@ -65,7 +67,7 @@ public class StudentDbUtil {
 			if(studentCount != 0) {
 				student.setRollnum();
 				System.out.println("Trying with other rollnumber...");
-				addStudent(student);
+				addStudent(student,type);
 			}else {
 				result = "adding student";
 				sql = "insert into student"+
@@ -77,12 +79,7 @@ public class StudentDbUtil {
 				int success = ps.executeUpdate();
 				if(success == 1) {
 					System.out.println("Student is added...");
-					String type = student.getAddrType(true);
 					Address address = student.getAddress(type);
-					if(address == null) {
-						type = student.getAddrType(true);
-						address = student.getAddress(type);
-					}
 					sql = "insert into address (rollnum,type,doorno,street,area,city,pincode) "
 							+ "values(?,?,?,?,?,?,?)";
 					ps = con.prepareStatement(sql);
