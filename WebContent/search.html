@@ -14,8 +14,15 @@
 		</ul>
 		<hr>
 		<form action="StudentControllerServlet" method="get">
-		<input type="hidden" name="action" value="search">
-		Search Student <input type="text" name="search"> &nbsp; <input type="submit" value="search">
+			<input type="hidden" name="action" value="search">
+			Search Student By
+			<select name="selectby">
+				<option>FirstName</option>
+				<option>LastName</option>
+				<option>RollNum</option>
+				<option>Department</option>
+				<option>Gender</option>
+			</select><input type="text" name="search"> &nbsp; <input type="submit" value="search">
 		</form>
 		<div id="search_results"></div>
 	</body>

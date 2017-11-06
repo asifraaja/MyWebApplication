@@ -7,18 +7,23 @@
 <html>
 	<body>
 		<%@include file="home.html" %>
+		<% Student student = (Student) session.getAttribute("student"); %>
 		<h2> ${success}</h2>
 		<hr> Student Details are ,
-		<table>
+		<table border="1">
 			<tr>
-				<th>Name</th>
-				<th>Rollnum</th>
-				<th>Dept</th>
+				<th>Roll Number</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Department</th>
+				<th>Mobile Number</th>
 			</tr>
 			<tr>
-				<td>${student.fname} ${student.lname}</td>
-				<td>${student.rollnum}</td>
-				<td>${student.dept}</td>
+				<td><%= student.getRollnum() %></td>
+				<td><%= student.getFname() %></td>
+				<td><%= student.getLname() %></td>
+				<td><%= student.getDept() %></td>
+				<td><%= student.getMobileNum() %></td> 
 			</tr>
 		</table>
 	</body>

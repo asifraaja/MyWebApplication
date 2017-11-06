@@ -26,14 +26,15 @@ public class StudentDbUtil {
 		System.out.println("Database connected....");
 	}
 	
-	public  List<Student> searchStudents(String keyword){
+	public  List<Student> searchStudents(String keyword,String selectby){
 		List<Student> students = new ArrayList<Student>();
+		selectby = selectby.toLowerCase();
 		String sql;
 		try {
 			if(keyword.equalsIgnoreCase("all"))
-				sql = "select * from student order by firstName";
+				sql = "select * from student order by "+selectby;
 			else
-				sql = "select * from student where firstName like '"+keyword+"%' order by firstName";
+				sql = "select * from student where "+selectby+" like '"+keyword+"%' order by "+selectby;
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
@@ -145,6 +146,40 @@ public class StudentDbUtil {
 			e.printStackTrace();
 		}
 		return "Address not updated";
+	}
+	
+	public Student getStudent(int rollnum) {
+		String sql;
+		Student student = new Student();
+		try {
+			sql = "select * from student where rollnum="+rollnum;
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			System.out.println("Getting detailss of "+rollnum);
+			while(rs.next()) {
+				sql = "select * from address where rollnum="+rollnum;
+				stmt = con.createStatement();
+				ResultSet rs1 = stmt.executeQuery(sql);
+				while(rs1.next()) {
+					System.out.println("Getting address of "+rs1.getString("type"));
+					Address address = new Address(
+							rs1.getString("doorno"),rs1.getString("street"),
+							rs1.getString("area"),rs1.getString("city"),rs1.getInt("pincode")
+							);
+					student.setAddress(rs1.getString("type"), address);
+				}
+				student.setRollnum(rollnum);
+				student.setFname(rs.getString("firstname"));
+				student.setLname(rs.getString("lastname"));
+				student.setGender(rs.getString("gender"));
+				student.setDept(rs.getString("department"));
+				student.setMobileNum(rs.getString("mobilenumber"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Got all details");
+		return student;
 	}
 
 	public void close() throws SQLException {

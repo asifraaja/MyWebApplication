@@ -61,8 +61,23 @@ public class StudentControllerServlet extends HttpServlet {
 				session.setAttribute("students", students);
 				RequetsDispatcherObj = req.getRequestDispatcher("/search.jsp");
 				break;
+			case "details":
+				int rollnum = Integer.parseInt(req.getParameter("rollnum"));
+				student = getStudentDetail(rollnum);
+				session.setAttribute("student", student);
+				RequetsDispatcherObj = req.getRequestDispatcher("/studentDetails.jsp");
+				break;
+			case "update":
+				break;
+			case "remove":
+				rollnum = Integer.parseInt(req.getParameter("rollnum"));
+				success = removeStudent(rollnum);
+				session.setAttribute("success", success);
+				RequetsDispatcherObj = req.getRequestDispatcher("/search.jsp");
+				break;
 		}
-		RequetsDispatcherObj.forward(req, resp);
+		if(RequetsDispatcherObj != null)
+		 RequetsDispatcherObj.forward(req, resp);
 	}
 
 	@Override
@@ -101,9 +116,29 @@ public class StudentControllerServlet extends HttpServlet {
 	
 	private List<Student> searchStudent(HttpServletRequest req, HttpServletResponse resp) {
 		String keyword = req.getParameter("search");
+		String type = req.getParameter("selectby");
 		if(keyword.equals(null) || keyword.equalsIgnoreCase("null") || keyword.isEmpty())
 			keyword = "all";
-		return studentDbUtil.searchStudents(keyword);
+		return studentDbUtil.searchStudents(keyword,type);
+	}
+	
+
+	@Override
+	public void destroy() {
+		super.destroy();
+		try {
+			System.out.println("Closing resource connections...");
+			studentDbUtil.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
+	private Student getStudentDetail(int rollnum) {
+		return studentDbUtil.getStudent(rollnum);
+	}
+
+	private String removeStudent(int rollnum) {
+		return studentDbUtil.removeStudent(rollnum);
+	}
 }
