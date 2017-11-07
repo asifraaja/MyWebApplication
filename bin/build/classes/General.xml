@@ -1,0 +1,112 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<linksave>
+<store_rule>
+    <rule id="26139">
+	<store_nbr>4565</store_nbr>
+    </rule>
+</store_rule>
+<promotions>
+    <promotion>
+        <id>ls66612</id>
+        <version/>
+        <creationDate>20120131084730</creationDate>
+        <startDate/>
+        <endDate/>
+        <displayName>Buy 3 for 15</displayName>
+        <description>Offer Type 15</description>
+        <type>3</type>
+        <enabled>true</enabled>
+        <beginUsable>2008-11-17</beginUsable>
+        <endUsable>2020-12-31</endUsable>
+        <priority>1</priority>
+        <global>true</global>
+        <giveToAnonymousProfiles>true</giveToAnonymousProfiles>
+        <allowMultiple>true</allowMultiple>
+        <uses>-1</uses>
+        <relativeExpiration>false</relativeExpiration>
+        <timeUntilExpire/>
+        <media/>
+        <upsell>false</upsell>
+        <closenessQualifiers/>
+        <pmdlRule><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pricing-model>
+    <qualifier>
+        <next number="3" sort-by="priceInfo.listPrice" sort-order="descending">
+            <collection-name>items</collection-name>
+            <element-name>item</element-name>
+            <element-quantity-property>quantity</element-quantity-property>
+            <includes>
+                <value>item.auxiliaryData.catalogRef.offerGroup2</value>
+                <constant>
+                    <data-type>java.lang.String</data-type>
+                    <string-value>ls66612</string-value>
+                </constant>
+            </includes>
+        </next>
+    </qualifier>
+    <target>
+        <up-to-and-including number="3" sort-by="priceInfo.listPrice" sort-order="descending">
+            <collection-name>items</collection-name>
+            <element-name>item</element-name>
+            <element-quantity-property>quantity</element-quantity-property>
+            <includes>
+                <value>item.auxiliaryData.catalogRef.targetedByOffers</value>
+                <constant>
+                    <data-type>java.lang.String</data-type>
+                    <string-value>ls66612</string-value>
+                </constant>
+            </includes>
+        </up-to-and-including>
+    </target>
+</pricing-model>]]></pmdlRule>
+        <adjuster>5</adjuster>
+        <discountType>fixedPrice</discountType>
+        <pricingCalculatorService><![CDATA[/atg/commerce/pricing/calculators/ItemDiscountCalculator]]></pricingCalculatorService>
+        <asdaPromotionType>1</asdaPromotionType>
+        <linksavePromotionState>0</linksavePromotionState>
+        <offerId>66612</offerId>
+        <linksaveId>5190</linksaveId>
+        <lsAcctDeptNbr>42</lsAcctDeptNbr>
+        <offerTypeCode>15</offerTypeCode>
+        <offerStatusCode>1</offerStatusCode>
+        <storeRuleId>26139</storeRuleId>
+        <offerPriceAmt>15</offerPriceAmt>
+        <customerDiscAmt>0</customerDiscAmt>
+        <offerDiscPct>0</offerDiscPct>
+        <priceThreshAmt/>
+        <ACL/>
+        <promotionOwner/>
+        <abcRule>0</abcRule>
+        <eVoucherType>0</eVoucherType>
+        <goodwill>false</goodwill>
+        <eVoucherCode/>
+        <offerFinelines/>
+        <offerDepts/>
+        <bulkLsOffers/>
+        <skus/>
+        <stores>
+            <store>
+                <promotionId>ls66612</promotionId>
+                <storeRuleId>26139</storeRuleId>
+                <storeNbr>4565</storeNbr>
+            </store>
+        </stores>
+        <offerGroupItems>
+            <offerGroupItem>
+                <promotionId>ls66612</promotionId>
+                <offerGroupId>1</offerGroupId>
+                <mdsFamId>32236353</mdsFamId>
+                <include>true</include>
+            </offerGroupItem>
+        </offerGroupItems>
+        <offerGroupInfos>
+            <offerGroupInfo>
+                <promotionId>ls66612</promotionId>
+                <offerGroupId>1</offerGroupId>
+                <offerPurchaseQty>3</offerPurchaseQty>
+                <forPriceOfQty>-1</forPriceOfQty>
+            </offerGroupInfo>
+        </offerGroupInfos>
+    </promotion>
+</promotions>
+</linksave>
